@@ -92,3 +92,8 @@ const idInvalidCardCompanies = invalidBatch => {
 console.log(idInvalidCardCompanies([invalid1]));
 console.log(idInvalidCardCompanies([invalid2]));
 console.log(idInvalidCardCompanies(batch));
+
+const cardNumbers = '1234567898765432';
+const toArr = cardNumbers.split('').map(x => parseInt(x));
+
+console.log(toArr);
