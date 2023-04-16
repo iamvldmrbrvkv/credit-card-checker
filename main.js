@@ -24,6 +24,7 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 
 
 // Add your functions below:
+// Checking and return valid card number using Luhn algorithm
 const validateCred = validNum => {
     let total = 0;
     for (let i = validNum.length - 1; i >= 0; i--) {
@@ -44,6 +45,7 @@ const validateCred = validNum => {
 console.log(validateCred(valid1));
 console.log(validateCred(invalid1));
 
+// Checking and return nested array for invalid cards numbers
 const findInvalidCards = cardsNums => {
     const invalidCards = [];
     for (let i = 0; i < cardsNums.length; i++) {
@@ -58,6 +60,7 @@ console.log(findInvalidCards([valid1, valid2, valid3, valid4, valid5]));
 console.log(findInvalidCards([invalid1, invalid2, invalid3, invalid4, invalid5]));
 console.log(findInvalidCards(batch));
 
+// Checking and return companies names of invalid cards
 const idInvalidCardCompanies = invalidBatch => {
     const companiesNames = [];
     for (let i = 0; i < invalidBatch.length; i++) {
@@ -93,6 +96,7 @@ console.log(idInvalidCardCompanies([invalid1]));
 console.log(idInvalidCardCompanies([invalid2]));
 console.log(idInvalidCardCompanies(batch));
 
+// Testing other cards numbers accepting numbers as a string and convert to array
 const cardNumbers = '1234567898765432';
 const toArr = cardNumbers.split('').map(x => parseInt(x));
 
