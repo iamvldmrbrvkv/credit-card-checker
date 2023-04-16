@@ -24,11 +24,71 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 
 
 // Add your functions below:
+const validateCred = validNum => {
+    let total = 0;
+    for (let i = validNum.length - 1; i >= 0; i--) {
+        let currValue = validNum[i]
+        if ((validNum.length -1 - i) % 2 === 1) {
+            currValue *=2;
+            if (currValue > 9) {
+                currValue -=9;
+            }
+        }
+        total += currValue;
+    }
 
+    return total % 10 === 0;
 
+}
 
+console.log(validateCred(valid1));
+console.log(validateCred(invalid1));
 
+const findInvalidCards = cardsNums => {
+    const invalidCards = [];
+    for (let i = 0; i < cardsNums.length; i++) {
+        if (!validateCred(cardsNums[i])) {
+            invalidCards.push(cardsNums[i]);
+        }
+    }
+    return invalidCards;
+}
 
+console.log(findInvalidCards([valid1, valid2, valid3, valid4, valid5]));
+console.log(findInvalidCards([invalid1, invalid2, invalid3, invalid4, invalid5]));
+console.log(findInvalidCards(batch));
 
+const idInvalidCardCompanies = invalidBatch => {
+    const companiesNames = [];
+    for (let i = 0; i < invalidBatch.length; i++) {
+        switch (invalidBatch[i][0]) {
+            case 3:
+                if (companiesNames.indexOf('Amex (American Express)') === -1) {
+                    companiesNames.push('Amex (American Express)');
+                }
+                break;
+            case 4:
+                if (companiesNames.indexOf('Visa') === -1) {
+                    companiesNames.push('Visa');
+                }
+                break;
+            case 5:
+                if (companiesNames.indexOf('Mastercard') === -1) {
+                    companiesNames.push('Mastercard');
+                }
+                break;
+            case 6:
+                if (companiesNames.indexOf('Discover') === -1) {
+                    companiesNames.push('Discover');
+                }
+                break;
+            default:
+                console.log('Company not found');
+        }
+    }
+    return companiesNames;
+}
 
-
+console.log(idInvalidCardCompanies([invalid1]));
+console.log(idInvalidCardCompanies([invalid2]));
+console.log(idInvalidCardCompanies(batch));
