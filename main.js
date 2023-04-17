@@ -98,6 +98,25 @@ console.log(idInvalidCardCompanies(batch));
 
 // Testing other cards numbers accepting numbers as a string and convert to array
 const cardNumbers = '1234567898765432';
-const toArr = cardNumbers.split('').map(x => parseInt(x));
+const userCardNumbers = cardNumbers.split('').map(x => parseInt(x));
 
-console.log(toArr);
+console.log(userCardNumbers);
+
+// Pushing userCardNumbers to the batch array
+batch.push(userCardNumbers);
+
+console.log(batch);
+
+// Converting invalid card numbers to valid
+const convertCardNumbers = invalidNumArray => {
+    let correctedArray = invalidNumArray;
+    correctedArray.pop();
+    correctedArray.push(0);
+    while (!validateCred(correctedArray)) {
+        correctedArray.push(correctedArray.pop() + 1);
+    }
+    return correctedArray;
+}
+
+console.log(convertCardNumbers(userCardNumbers));
+console.log(validateCred(convertCardNumbers(userCardNumbers)));
